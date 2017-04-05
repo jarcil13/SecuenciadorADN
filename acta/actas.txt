@@ -1,0 +1,15 @@
+-------------------------------------------------------
+Fecha: 04/04/2017
+
+Planteamiento de la solución, los algoritmos y las
+estructuras de datos que se van a usar.
+(Topological-sort, De bruijn Graph, k-mer)
+Se tuvo en cuenta la caracteristica on-line del
+algoritmo y los posibles problemas que podrían surgir
+a lo largo del proceso.
+
+Hora: 1800 - 2000 UTC-5
+
+Agradecimientos:
+Juan José Suarez
+--------------------------------------------------------
