@@ -4,7 +4,7 @@
 #include <vector>
 
 using namespace std;
-
+//try
 
 /*
     Divide the string(str) into k-mers of size k
