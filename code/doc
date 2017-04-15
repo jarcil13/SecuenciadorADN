@@ -1,0 +1,5 @@
+PROJECT_NAME     = Secuenciador ADN
+INPUT            = version2.0.cpp
+WARNINGS         = YES
+TAGFILES         = qt.tag
+SEARCHENGINE     = NO
