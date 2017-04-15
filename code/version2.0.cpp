@@ -175,8 +175,11 @@ main()
     bruijn->parse(graph, starting);
     t2 = clock();
     diff = ((float)t2 - (float)t1);
-    seconds = diff / CLOCKS_PER_SEC;
+    float seconds2 = diff / CLOCKS_PER_SEC;
     cout << "Cadena DNA formada" << endl;
-    cout << "Tiempo necesitado:  " << seconds << endl;
+    cout << "Tiempo necesitado:  " << seconds2 << endl;
+    cout << "TIEMPO TOTAL " << seconds + seconds2 << " SEGUNDOS" << endl;
+    cout << "tamaño del ADN generado " << size << endl; 
     cout << bruijn->getDNA() << endl;
+
 }
