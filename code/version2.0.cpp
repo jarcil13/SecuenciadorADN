@@ -40,16 +40,15 @@ class bruijnDNAReconstructure
      * Divide the string(str) into k-mers of size k
      * @param str string to k-mer
      * @param graph Graph bruijn
-     * @param starting Topological vector
+     * @param starting vector to define the starting node
      * @return the list of the left and right k-1-mer from each k-mer
      **/
     void k_mer(string str, vector<int> &graph, vector<bool> &starting)
     {
         for (int i = 0; i < str.size() - kmers; ++i)
         {
-            string temp = str.substr(i, kmers);
-            string tempLeft = temp.substr(0, temp.size() - 1);
-            string tempRight = temp.substr(1, temp.size());
+            string tempLeft = str.substr(i, kmers - 1);
+            string tempRight = str.substr(i+1, kmers -1);
             if (!kmap.count(tempLeft))
             {
                 kmap[tempLeft] = cont;
@@ -129,7 +128,6 @@ class bruijnDNAReconstructure
         t2 = clock();
         float diff((float)t2 - (float)t1);
         float seconds = diff / CLOCKS_PER_SEC;
-        cout << "Terminado el ordenamiento topológico" << endl;
         cout << "Tiempo tomado:  " << seconds << endl;
         cout << "Empieza la reconstrucción" << endl;
         dna << search(start);
