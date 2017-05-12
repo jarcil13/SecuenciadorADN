@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "Graph.cpp"
+#include "graph.cpp"
 #include "boyer.cpp"
 
 using namespace std;
