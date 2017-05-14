@@ -5,6 +5,9 @@
 
 using namespace std;
 
+/**
+  * Main funcion of the program
+  **/
 main(){
     int size;
     string str;
@@ -17,16 +20,12 @@ main(){
     Boyer *boyer = new Boyer();
     string str_final, gen;
     int lines = 0;
-     while(cin >> str){
+    while(cin >> str){
         bruijn->k_mer(str,graph,graphInv,starting);
         lines++;
-        if(lines%15==0){       
+        if(lines%100==0){       
             str_final = bruijn->parse(graph,graphInv,starting);
-            if(str_final.size()>=size-1){
-                gen = boyer->searchGen(str_final);
-                cout << gen;
-                break;
-            }
         }
     }
+    cout << boyer->searchGen(str_final) << endl;
 }

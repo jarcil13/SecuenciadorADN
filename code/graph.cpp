@@ -10,7 +10,7 @@
 
 using namespace std;
 
-/*
+/*!
 * Class about generating DNA secuence using bruijn graph.
 * @author Santiago Passos and Juan David Arcila
 * @version 1.0.0 15/04/2017
@@ -29,9 +29,9 @@ class Bruijn
 
   public:
     /**
-    * Class Constructor.
-    * @param size maximun size of the graph.
-    **/
+      * Class Constructor.
+      * @param size maximun size of the graph.
+      **/
     Bruijn(int size)
     {
         kmers = 201;
@@ -40,12 +40,12 @@ class Bruijn
     }
 
     /**
-     * Divide the string(str) into k-mers of size k
-     * @param str string to k-mer
-     * @param graph Graph bruijn
-     * @param starting vector to make the topological search
-     * @return the list of the left and right k-1-mer from each k-mer
-     **/
+      * Divide the string(str) into k-mers of size k
+      * @return the list of the left and right k-1-mer from each k-mer
+      * @param str string to k-mer
+      * @param graph Graph bruijn
+      * @param starting vector to make the topological search
+      **/
     void k_mer(string str,vector<int> &graph, vector<int> &graphInv, vector<bool> &starting){
         for(int i=0;i<str.size()-kmers;++i){
             string tempLeft = str.substr(i,kmers-1);
@@ -62,19 +62,19 @@ class Bruijn
         }
     }
     /**
-     * Search for the int in the map
-     * @param n int to search
-     * @return key of the value n in the map
-     **/
+      * Search for the int in the map
+      * @param n int to search
+      * @return key of the value n in the map
+      **/
     string search(int n){
         return kmap2[n];   
     }
     /**
-    * Aux funtion to make the parse in the rest of the graph
-    * @param graph graph bruijn
-    * @param visited vector usted to detected cycles in the graph
-    * @param node actual node to read
-    **/
+      * Aux funtion to make the parse in the rest of the graph
+      * @param graph graph bruijn
+      * @param visited vector usted to detected cycles in the graph
+      * @param node actual node to read
+      **/
     void parseAux(vector<int> graph,bool visited[],int node,stringstream &cadena){
         while(true){
             visited[node] = true;
@@ -86,6 +86,12 @@ class Bruijn
         }
     }
 
+    /**
+      * Aux fuction called by parse
+      * @param graph graph bruijn
+      * @param visited vector usted to detected cycles in the graph
+      * @param node actual node to read
+      **/
     void parseAuxInv(vector<int> graph,bool visited[],int node,stringstream &cadena){
         while(true){
             visited[node] = true;
@@ -97,10 +103,11 @@ class Bruijn
         }
     }
     /**
-     * Return the dna string that the bruijn graph represent
-     * @param graph graph bruijn
-     * @param starting vector usted in topological search
-     **/
+      * Given a the Bruijn convert a string DNA 
+      * @return the dna string that the bruijn graph represent
+      * @param graph graph bruijn
+      * @param starting vector usted in topological search
+      **/
     string parse(vector<int>graph,vector<int> graphInv,vector<bool> starting){
         int start;
         stringstream cadenaDer;

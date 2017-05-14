@@ -9,17 +9,32 @@
 
 using namespace std;
 
+/*!
+ * Class to make the DNA search with BooyerMoore
+ * @author Santiago Passos and Juan David Arcila
+ * @version 1.0.0 15/04/2017
+ **/
 class Boyer{
 
   int maxlength = 0;
   stringstream gen;
 public:
-
+   /**
+     * Usefull fucion to get a max int
+     * @param a number a
+     * @param b number b
+     * @return the max number
+     **/
   int max(int a, int b){
     return (a > b) ? a : b;
   }
 
-  // The preprocessing function for Boyer Moore's bad character heuristic
+  /**
+    * The preprocessing function for Boyer Moore's bad character heuristic
+    * @param *str pointer to the string to evaluate
+    * @param size length of the string
+    * @param badchar vectro to make the Boyer Moore's bad character heuristic
+    **/
   void badCharHeuristic(char *str, int size, vector<int> badchar){
     int i;
     // Initialize all occurrences as -1
@@ -30,7 +45,11 @@ public:
       badchar[(int) str[i]] = i;
   }
 
-  /* Driver program to test above funtion */
+  /**
+    * Driver program, funcion to search a pattern
+    * @param *pat pointer to the string pattern
+    * @param *txt pointer to the text
+    **/
   void search(char *txt, char *pat, vector<int> &indices){
     int m = strlen(pat);
     int n = strlen(txt);
@@ -48,6 +67,11 @@ public:
       }
   }
 
+ /**
+   * Funcion that search DNA gen from a DNA secuence
+   * @param cadena string of DNA
+   * @return string of DNA gen
+   **/ 
   string searchGen(string cadena){
     maxlength = cadena.size();
     char ADN[cadena.length()];
@@ -64,7 +88,7 @@ public:
         if(pos<inicial) continue;
         else inicial = pos;
         for(int posF : vect_fin){
-            if(posF<inicial+200) continue; // se suma 4 para que mínimo haya un codón en el gen
+            if(posF<inicial+198) continue; // se suma 4 para que mínimo haya un codón en el gen
             if((posF-inicial)%3==0){
                 gen << cadena.substr(inicial,posF+3-inicial) << endl;
                 inicial = posF + 3;
