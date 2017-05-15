@@ -30,13 +30,12 @@ class Bruijn
   public:
     /**
       * Class Constructor.
-      * @param size maximun size of the graph.
       **/
-    Bruijn(int size)
+    Bruijn()
     {
         kmers = 201;
-        kmap.reserve(size + 100);
-        kmap2.reserve(size + 100);
+        kmap.reserve(20100);
+        kmap2.reserve(20100);
     }
 
     /**
@@ -56,6 +55,18 @@ class Bruijn
             int from = kmap[tempLeft];
             kmap2[to] = tempRight;
             kmap2[from] = tempLeft;
+          	if(graph.size()<from){
+          		graph.push_back(to);
+              graph.push_back(-1);
+              graphInv.push_back(-1);
+              graphInv.push_back(from);
+							starting.push_back(true);
+              starting.push_back(false);
+            }else if(graph.size()<to){
+            	graph.push_back(-1);
+              graphInv.push_back(from);
+              starting.push_back(false);
+            }
             graph[from] = to;
             graphInv[to] = from;
             starting[to] = false;

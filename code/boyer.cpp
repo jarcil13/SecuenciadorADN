@@ -17,8 +17,17 @@ using namespace std;
 class Boyer{
 
   int maxlength = 0;
+  int max_gen;
+  int gen_count = 0;
   stringstream gen;
 public:
+   /**
+     * Constructo fro the class
+     * @param num numbers to be searched 
+     **/
+   Boyer(int num){
+    max_gen = num;
+   }
    /**
      * Usefull fucion to get a max int
      * @param a number a
@@ -27,6 +36,14 @@ public:
      **/
   int max(int a, int b){
     return (a > b) ? a : b;
+  }
+
+  /**
+    * Funcion to know if the number of Genes is completed
+    * @return bool true if it's completed
+    **/
+  bool is_complete(){
+    return max_gen==gen_count;
   }
 
   /**
@@ -79,18 +96,26 @@ public:
     vector<int> vect_ini;
     vector<int> vect_fin;
     search(ADN,"atg",vect_ini);
-    search(ADN,"taa",vect_fin);
-    search(ADN,"tag",vect_fin);
-    search(ADN,"tga",vect_fin);
+    vector<string> codonsStop = {"taa", "tag", "tga"};
+    for(string a : codonsStop){
+      char pat[3];
+      for(int i=0;i<a.size();++i) pat[i] = a[i];
+      search(ADN,pat,vect_fin);
+    }
     sort(vect_fin.begin(),vect_fin.end());
     int inicial = vect_ini[0];
+    bool keep = true;
+    gen_count = 0;
     for(int pos : vect_ini){
+        if(is_complete()) break;
         if(pos<inicial) continue;
         else inicial = pos;
         for(int posF : vect_fin){
-            if(posF<inicial+198) continue; // se suma 4 para que mínimo haya un codón en el gen
+            if(is_complete()) break;
+            if(posF<inicial+198) continue;
             if((posF-inicial)%3==0){
                 gen << cadena.substr(inicial,posF+3-inicial) << endl;
+                gen_count++;
                 inicial = posF + 3;
                 break;
             }
